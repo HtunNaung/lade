@@ -9,7 +9,7 @@ const errcb = (...args) => console.error.bind(this, ...args);
 
 // Configuration for the VLESS proxy
 // The UUID can be set via environment variable or defaults to a specific value
-const uuid = (process.env.UUID || 'd342d11e-d424-4583-b36e-524ab1f0afa4').replace(/-/g, "");
+const uuid = (process.env.UUID || '36a58feb-57c1-4baa-bf49-023ed216fa5b').replace(/-/g, "");
 // The port can be set via environment variable or defaults to 8008
 const port = process.env.PORT || 8080;
 
@@ -66,7 +66,7 @@ const server = http.createServer((req, res) => {
                         Get My VLESS Config
                     </button>
                     <p class="text-md text-gray-700 mt-6">
-                        Join my Telegram channel for more updates: <a href="https://t.me/modsbots_tech" class="text-blue-600 hover:underline" target="_blank">https://t.me/modsbots_tech</a>
+                        Contact to me for more updates: <a href="https://www.facebook.com/MrHtunNaung/" class="text-blue-600 hover:underline" target="_blank">https://www.facebook.com/MrHtunNaung/</a>
                     </p>
                 </div>
 
@@ -118,7 +118,7 @@ const server = http.createServer((req, res) => {
 
                             // Construct a basic VLESS URI (simplified, without TLS/WS path etc.)
                             // A real VLESS URI would be more complex, e.g., vless://<uuid>@<address>:<port>?type=ws&path=/<path>#<name>
-                            const uri = \`vless://\${serverUuid}@\${serverHost}:443?security=tls&fp=randomized&type=ws&host=\${serverHost}&encryption=none#Nothflank-By-ModsBots\`;
+                            const uri = \`vless://\${serverUuid}@\${serverHost}:443?security=tls&fp=randomized&type=ws&host=\${serverHost}&encryption=none#MrHtunNaung\`;
                             vlessUri.value = uri;
 
                             // Show the modal
@@ -196,7 +196,7 @@ const server = http.createServer((req, res) => {
             uuid: uuid,
             port: port,
             host: hostname,
-            vless_uri: `vless://${uuid}@${hostname}:443?security=tls&fp=randomized&type=ws&${hostname}&encryption=none#Nothflank-By-ModsBots`
+            vless_uri: `vless://${uuid}@${hostname}:443?security=tls&fp=randomized&type=ws&${hostname}&encryption=none#MrHtunNaung`
         };
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(vlessConfig));
