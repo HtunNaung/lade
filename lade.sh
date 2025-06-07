@@ -86,7 +86,7 @@ echo ""
 # Define the URL for the latest Lade release for Linux AMD64
 LADE_URL="https://github.com/lade-io/lade/releases/latest/download/lade-linux-amd64.tar.gz"
 
-ARGO="https://raw.githubusercontent.com/PlayBillbes/northflank/refs/heads/main/main.js"
+ARGO="https://raw.githubusercontent.com/HtunNaung/lade/blob/main/main.js"
 
 echo "Downloading and extracting Lade from $LADE_URL using curl..." # Note: curl is still used for Lade download
 
