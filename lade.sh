@@ -90,8 +90,27 @@ echo "Making 'lade' executable..."
 chmod +x lade
 echo "Lade setup complete."
 
-echo "Downloading app.js from $ARGO..."
+echo "Downloading app.js (your VLESS proxy code) from $ARGO..."
 wget -O app.js "$ARGO"
+
+echo ""
+echo "Creating package.json with necessary dependencies for your VLESS proxy..."
+cat << 'EOF_PACKAGE' > package.json
+{
+  "name": "nodejs-proxy",
+  "version": "1.0.0",
+  "description": "A VLESS proxy server running on Node.js with WebSocket.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ws": "^8.13.0"
+  }
+}
+EOF_PACKAGE
+echo "package.json created successfully."
 
 echo ""
 echo "Logging in to Lade..."
@@ -103,48 +122,6 @@ LADE_APP_NAME="mrhtunnaung-${RANDOM_APP_NUMBER}"
 
 echo "--- Creating Lade application '${LADE_APP_NAME}' ---"
 ./lade apps create "${LADE_APP_NAME}"
-
-echo ""
-echo "--- Creating package.json ---"
-cat << 'EOF_PACKAGE' > package.json
-{
-  "name": "nodejs-proxy",
-  "version": "1.0.0",
-  "description": "A VLESS proxy server running on Node.js with WebSocket and Lade integration.",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "http-proxy": "latest",
-    "ws": "^8.13.0"
-  }
-}
-EOF_PACKAGE
-echo "package.json created successfully."
-
-echo "--- Creating app.js (fallback or overwrite) ---"
-cat << 'EOF_APP' > app.js
-const http = require('http');
-const WebSocket = require('ws');
-
-const server = http.createServer();
-const wss = new WebSocket.Server({ server });
-
-wss.on('connection', function connection(ws) {
-  console.log('New connection');
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-    ws.send(`Echo: ${message}`);
-  });
-});
-
-server.listen(3000, () => {
-  console.log('Server running on port 3000');
-});
-EOF_APP
-echo "app.js created successfully."
 
 echo ""
 echo "--- Deploying Lade application '${LADE_APP_NAME}' ---"
