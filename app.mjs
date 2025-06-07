@@ -196,7 +196,7 @@ const server = http.createServer((req, res) => {
             uuid: uuid,
             port: port,
             host: hostname,
-            vless_uri: `vless://${uuid}@${hostname}:443?security=tls&fp=randomized&type=ws&${hostname}&encryption=none#MrHtunNaung`
+            vless_uri: `vless://<span class="math-inline">\{uuid\}@</span>{hostname}:443?security=tls&fp=randomized&type=ws&${hostname}&encryption=none#MrHtunNaung`
         };
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(vlessConfig));
@@ -280,4 +280,4 @@ server.listen(port, () => {
 // Handle server errors
 server.on('error', err => {
     errcb('Server Error:', err);
-});
+});"
