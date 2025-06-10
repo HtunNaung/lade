@@ -117,7 +117,7 @@ echo "Logging in to Lade..."
 ./lade login
 
 echo ""
-RANDOM_APP_NUMBER=$(shuf -i 1000-9999 -n 1)
+RANDOM_APP_NUMBER=$(shuf -i 1-10 -n 1)
 LADE_APP_NAME="mrhtunnaung-${RANDOM_APP_NUMBER}"
 
 echo "--- Creating Lade application '${LADE_APP_NAME}' ---"
