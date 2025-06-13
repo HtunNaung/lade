@@ -117,7 +117,18 @@ echo "Logging in to Lade..."
 ./lade login
 
 echo ""
-LADE_APP_NAME="sg"
+
+# --- PROMPT USER FOR LADE APP NAME ---
+while true; do
+    read -p "Enter your desired Lade application name (e.g., my-proxy-app): " LADE_APP_NAME
+    if [[ -z "$LADE_APP_NAME" ]]; then
+        echo "Application name cannot be empty. Please try again."
+    elif [[ "$LADE_APP_NAME" =~ [^a-zA-Z0-9-] ]]; then
+        echo "Invalid characters in application name. Please use only alphanumeric characters and hyphens."
+    else
+        break # Exit the loop if the input is valid
+    fi
+done
 
 echo "--- Creating Lade application '${LADE_APP_NAME}' ---"
 ./lade apps create "${LADE_APP_NAME}"
