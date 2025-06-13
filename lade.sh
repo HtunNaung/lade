@@ -120,7 +120,7 @@ echo ""
 
 # --- PROMPT USER FOR LADE APP NAME ---
 while true; do
-    read -p "Enter your desired Lade application name (e.g., my-proxy-app): " LADE_APP_NAME
+    read -p "Enter your desired Lade application name (e.g., myproxy: " LADE_APP_NAME
     if [[ -z "$LADE_APP_NAME" ]]; then
         echo "Application name cannot be empty. Please try again."
     elif [[ "$LADE_APP_NAME" =~ [^a-zA-Z0-9-] ]]; then
