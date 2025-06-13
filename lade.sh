@@ -116,6 +116,8 @@ echo ""
 echo "Logging in to Lade..."
 ./lade login
 
+echo ""
+LADE_APP_NAME="sg"
 
 echo "--- Creating Lade application '${LADE_APP_NAME}' ---"
 ./lade apps create "${LADE_APP_NAME}"
